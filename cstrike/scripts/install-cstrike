@@ -1,0 +1,31 @@
+#!/bin/sh
+
+mkdir -p /var/steam/games/cstrike/
+
+/var/steam/steamcmd.sh \
+  +login anonymous \
+  +force_install_dir /var/steam/games/cstrike/ \
+  +app_update 90 \
+  +app_set_config 90 mod cstrike validate \
+  +quit
+
+rm -Rf /var/steam/games/cstrike/steamapps*
+cd /var/steam/games/cstrike/steamapps
+
+for appId in 10 70 90; do
+  curl -q "https://raw.githubusercontent.com/dgibbs64/HLDS-appmanifest/master/CounterStrike/appmanifest_${appId}.acf" -O "appmanifest_${appId}.acf"
+done
+
+TIMES=10
+i=$TIMES
+
+while [ $i -gt 0 ]; do
+  /var/steam/steamcmd.sh \
+    +login anonymous \
+    +force_install_dir /var/steam/games/cstrike/ \
+    +app_update 90 \
+    +app_set_config 90 mod cstrike validate \
+    +quit
+
+  i=$(($i - 1))
+done
