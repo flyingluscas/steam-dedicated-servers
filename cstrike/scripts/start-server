@@ -1,0 +1,13 @@
+#!/bin/sh
+
+cd /home/steam/games/cstrike
+
+./hlds_run \
+  -game cstrike \
+  -strictportbind \
+  +hostname ${HOSTNAME} \
+  +ip ${IP} \
+  -port ${PORT} \
+  +clientport ${CLIENT_PORT} \
+  +map ${MAP} \
+  -maxplayers ${MAXPLAYERS}

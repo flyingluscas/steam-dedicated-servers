@@ -1,13 +1,19 @@
 FROM ubuntu:16.04
 
 ADD ./scripts /scripts
+ADD ./manifestfiles /manifestfiles
 
 RUN chmod +x /scripts/* && \
     /scripts/install-dependencies && \
-    /scripts/install-steamcmd && \
+    useradd -m steam
+
+USER steam
+WORKDIR /home/steam
+
+RUN /scripts/install-steamcmd && \
     /scripts/install-cstrike
 
-EXPOSE 27015
-EXPOSE 27015/UDP
-EXPOSE 27020/UDP
-EXPOSE 26900/UDP
+COPY ./config/server.cfg /home/steam/games/cstrike/cstrike/server.cfg
+COPY ./config/mapcycle.txt /home/steam/games/cstrike/cstrike/mapcycle.txt
+
+CMD /scripts/start-server

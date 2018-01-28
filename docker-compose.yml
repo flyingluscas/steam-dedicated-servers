@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+  cstrike:
+    build: ./cstrike
+    container_name: cstrike-server
+    environment:
+      IP: 0.0.0.0
+      HOSTNAME: luscas_server
+      PORT: 27015
+      CLIENT_PORT: 27005
+      MAP: de_dust
+      MAXPLAYERS: 8
+    ports:
+      - 27015:27015/udp
+      - 27005:27005
