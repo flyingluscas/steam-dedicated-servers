@@ -1,6 +1,10 @@
 version: '2'
 
 services:
+  steamcmd:
+    build: ./steamcmd
+    container_name: steamcmd-cli
+
   cstrike:
     build: ./cstrike
     container_name: cstrike-server
