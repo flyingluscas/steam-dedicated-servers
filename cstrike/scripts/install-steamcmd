@@ -1,5 +1,0 @@
-#!/bin/sh
-
-curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf -
-/home/steam/steamcmd.sh +quit
-ln -s /home/steam/linux32 /home/steam/.steam/sdk32

@@ -1,30 +1,36 @@
 #!/bin/sh
 
-while [ ! -e /home/steam/games/cstrike/valve/gfx.wad ]; do
-  if [ -e /home/steam/games/cstrike ]; then
-    rm -Rf /home/steam/games/cstrike
+while [ ! -e $GAME_FOLDER/valve/gfx.wad ]; do
+  if [ -e $GAME_FOLDER ]; then
+    rm -Rf $GAME_FOLDER
   fi
 
-  mkdir -p /home/steam/games/cstrike
+  mkdir -p $GAME_FOLDER
 
-  /home/steam/steamcmd.sh \
+  $HOME/steamcmd.sh \
     +login anonymous \
-    +force_install_dir /home/steam/games/cstrike/ \
+    +force_install_dir $GAME_FOLDER/ \
     +app_update 90 \
     +app_set_config 90 mod cstrike validate \
     +quit
 
-  if [ -e /home/steam/games/cstrike/steamapps ]; then
-    rm -Rf /home/steam/games/cstrike/steamapps/*
+  if [ -e $GAME_FOLDER/steamapps ]; then
+    rm -Rf $GAME_FOLDER/steamapps/*
   else
-    mkdir -p /home/steam/games/cstrike/steamapps
+    mkdir -p $GAME_FOLDER/steamapps
   fi
 
-  cp /manifestfiles/* /home/steam/games/cstrike/steamapps
+  cd $GAME_FOLDER/steamapps
 
-  /home/steam/steamcmd.sh \
+  for i in 10 70 90; do
+    curl "https://raw.githubusercontent.com/flyingluscas/steam-dedicated-servers/master/cstrike/manifestfiles/appmanifest_${i}.acf" \
+      --output appmanifest_${i}.acf \
+      --silent
+  done
+
+  $HOME/steamcmd.sh \
     +login anonymous \
-    +force_install_dir /home/steam/games/cstrike/ \
+    +force_install_dir $GAME_FOLDER/ \
     +app_update 90 \
     +app_set_config 90 mod cstrike validate \
     +quit

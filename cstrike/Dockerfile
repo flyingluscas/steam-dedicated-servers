@@ -1,19 +1,9 @@
-FROM ubuntu:16.04
+FROM flyingluscas/steamcmd:1.0.1
 
-ADD ./scripts /scripts
-ADD ./manifestfiles /manifestfiles
+ADD ./scripts /usr/local/bin
 
-RUN chmod +x /scripts/* && \
-    /scripts/install-dependencies && \
-    useradd -m steam
+ENV GAME_FOLDER=$HOME/games/cstrike
 
-USER steam
-WORKDIR /home/steam
+RUN install-cstrike
 
-RUN /scripts/install-steamcmd && \
-    /scripts/install-cstrike
-
-COPY ./config/server.cfg /home/steam/games/cstrike/cstrike/server.cfg
-COPY ./config/mapcycle.txt /home/steam/games/cstrike/cstrike/mapcycle.txt
-
-CMD /scripts/start-server
+CMD start-server

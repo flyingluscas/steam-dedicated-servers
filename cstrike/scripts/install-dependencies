@@ -1,5 +1,0 @@
-#!/bin/sh
-
-dpkg --add-architecture i386
-apt-get update -y
-apt-get install -y curl lib32gcc1 lib32stdc++6 libstdc++6:i386

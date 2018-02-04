@@ -1,11 +1,16 @@
 #!/bin/sh
 
-cd /home/steam/games/cstrike
+cd $GAME_FOLDER
+
+if [ $SECURE -lt 1 ]; then
+  INSECURE_FLAG="-insecure"
+fi
 
 ./hlds_run \
   -game cstrike \
   -strictportbind \
-  +hostname ${HOSTNAME} \
+  $INSECURE_FLAG \
+  +hostname "${HOSTNAME}" \
   +ip ${IP} \
   -port ${PORT} \
   +clientport ${CLIENT_PORT} \

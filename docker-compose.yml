@@ -2,15 +2,17 @@ version: '2'
 
 services:
   cstrike:
-    build: ./cstrike
+    images: flyingluscas/steam-servers:cstrike
     container_name: cstrike-server
     environment:
       IP: 0.0.0.0
-      HOSTNAME: luscas_server
+      HOSTNAME: 'Counter-Strike 1.6 Server'
       PORT: 27015
       CLIENT_PORT: 27005
+      SECURE: 1
       MAP: de_dust
       MAXPLAYERS: 8
+    volumes:
+      - ./cstrike/server.cfg:/home/steam/games/cstrike/cstrike/server.cfg
     ports:
       - 27015:27015/udp
-      - 27005:27005
