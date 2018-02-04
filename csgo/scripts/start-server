@@ -1,0 +1,18 @@
+#!/bin/sh
+
+cd $GAME_FOLDER
+
+./srcds_run \
+  -game csgo \
+  -usercon \
+  -strictportbind \
+  +hostname ${HOSTNAME} \
+  -ip ${IP} \
+  -port ${PORT} \
+  +clientport ${CLIENT_PORT} \
+  +map ${MAP} \
+  -maxplayers_override ${MAXPLAYERS} \
+  +mapgroup ${MAP_GROUP} \
+  +game_mode ${GAME_MODE} \
+  +game_type ${GAME_TYPE} \
+  -nobreakpad

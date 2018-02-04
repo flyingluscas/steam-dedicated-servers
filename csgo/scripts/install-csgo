@@ -1,0 +1,9 @@
+#!/bin/sh
+
+mkdir -p $GAME_FOLDER
+
+/home/steam/steamcmd.sh \
+  +login anonymous \
+  +force_install_dir $GAME_FOLDER/ \
+  +app_update 740 validate \
+  +quit

@@ -1,6 +1,7 @@
 version: '2'
 
 services:
+  # Counter-Strike 1.6
   cstrike:
     image: flyingluscas/steam-servers:cstrike
     container_name: cstrike-server
@@ -14,5 +15,23 @@ services:
       MAXPLAYERS: 8
     volumes:
       - ./cstrike/server.cfg:/home/steam/games/cstrike/cstrike/server.cfg
+    ports:
+      - 27015:27015/udp
+
+  # Counter-Strike: Global Offensive
+  csgo:
+    image: flyingluscas/steam-servers:csgo
+    container_name: csgo-server
+    environment:
+      IP: 0.0.0.0
+      HOSTNAME: CStrikeGoServer
+      PORT: 27015
+      CLIENT_PORT: 27005
+      SECURE: 1
+      GAME_TYPE: 0
+      GAME_MODE: 0
+      MAP_GROUP: mg_active
+      MAP: de_dust2
+      MAXPLAYERS: 16
     ports:
       - 27015:27015/udp

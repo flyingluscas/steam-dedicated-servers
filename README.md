@@ -11,3 +11,13 @@ $ docker-compose up cstrike
 ```
 
 Basic server configuration can be done in the `docker-compose.yml`, but if you want to change more stuff you can use the `cstrike/server.cfg` file, have fun!
+
+## Counter-Strike: Global Offensive
+
+Just run the command below to start the server:
+
+``` bash
+$ docker-compose up csgo
+```
+
+Basic server configuration can be done in the `docker-compose.yml`, have fun!
