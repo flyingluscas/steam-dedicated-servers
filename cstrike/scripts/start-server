@@ -10,7 +10,7 @@ fi
   -game cstrike \
   -strictportbind \
   $INSECURE_FLAG \
-  +hostname "${HOSTNAME}" \
+  +hostname ${HOSTNAME} \
   +ip ${IP} \
   -port ${PORT} \
   +clientport ${CLIENT_PORT} \

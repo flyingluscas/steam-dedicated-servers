@@ -2,11 +2,11 @@ version: '2'
 
 services:
   cstrike:
-    images: flyingluscas/steam-servers:cstrike
+    image: flyingluscas/steam-servers:cstrike
     container_name: cstrike-server
     environment:
       IP: 0.0.0.0
-      HOSTNAME: 'Counter-Strike 1.6 Server'
+      HOSTNAME: CStrikeServer
       PORT: 27015
       CLIENT_PORT: 27005
       SECURE: 1
